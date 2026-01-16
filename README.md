@@ -10,10 +10,17 @@ Dependências listadas no arquivo pyproject.toml
 
 ## Guia de Utilização do Script
 
-Execute o script no terminal com o comando:
+1) Crie um arquivo chamado `.env` na raiz do diretório do script com as informações de acesso: usuário e senha. Utilize o seguinte formato:
 ```
-uv run main.py YYYY-AA <num_faturas> <num_skip>
+# Dados da API ENGIE
+API_USERNAME = "usuario"
+API_PASSWORD = "senha"
+```
+
+2) Execute o script no terminal com o comando:
+```
+uv run src/main.py YYYY-AA <num_faturas> <num_skip>
 ```
 
 * `num_faturas` é um valor entre 1 a 100 e representa o número de faturas que serão baixadas.
-* `num_skip` é um valor entre 0 a 100 e representa o número de faturas que são puladas na etapa de download. Necessário para baixar todas as faturas de um determinado mês com mais de 100 faturas no sistemas.
+* `num_skip` é um valor entre 0 a 100 e representa o número de faturas que são puladas na etapa de download. Necessário para baixar todas as faturas de um determinado mês com mais de 100 faturas no sistema.

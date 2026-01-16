@@ -20,8 +20,8 @@ def main():
         num_skip = int(argv[3])
         if num_skip < 0 or num_skip > 100:
             num_skip = 0
-        else:
-            num_skip = 0
+    else:
+        num_skip = 0
 
     load_dotenv()
     USERNAME =  os.getenv("API_USERNAME")
