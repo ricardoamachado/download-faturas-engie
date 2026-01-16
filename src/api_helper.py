@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 
 
-def authenticate_user(username:str, password:str) -> str | None:
+def authenticate_user(username: str, password: str) -> str:
     url = "https://smart-geracaodistribuida-api.engiesolucoes.digital/api/autenticacao/Login"
     data = {
         "email": username,
@@ -18,10 +18,9 @@ def authenticate_user(username:str, password:str) -> str | None:
     if response.status_code == 200:
         return response.text
     else:
-        raise Exception(f"Erro de autenticação com status code: {response.status_code}: {response.text}") 
-        return None
+        raise Exception(f"Erro de autenticação com status code: {response.status_code}: {response.text}")
 
-def get_faturas(token: str, reference_month:datetime, num_faturas: int = 100, num_skip: int = 0) -> dict | None:
+def get_faturas(token: str, reference_month:datetime, num_faturas: int = 100, num_skip: int = 0) -> dict:
     url = "https://smart-geracaodistribuida-api.engiesolucoes.digital/api/fatura"
     headers = {
         "accept": "text/plain",
@@ -39,13 +38,13 @@ def get_faturas(token: str, reference_month:datetime, num_faturas: int = 100, nu
         return response.json()
     else:
         raise Exception(f"Erro ao consultar faturas com status code: {response.status_code}: {response.text}")
-        return None
 
 def download_file(url:str, local_filename) -> None:
     response = requests.get(url)
     if response.status_code == 200:
         with open(local_filename, 'wb') as file:
             file.write(response.content)
-        print(f"File '{local_filename}' downloaded successfully!")
+        print(f"Arquivo '{local_filename}' baixado com sucesso!")
     else:
-        print(f"Failed to download the file. Status code: {response.status_code}")
+        raise Exception(f"Erro ao baixar o arquivo. Status code: {response.status_code}")
+        
